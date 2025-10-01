@@ -81,18 +81,18 @@ Gumawa ng super simple na Minecraft analogy. Sundin ang mga rules na ito:
 3. Halimbawa: "Ang subclass is parang Iron Golem, tapos ang property niya is yung poppy na hawak niya"
 4. Use simple Tagalog words lang - wag gumamit ng mahirap na technical terms
 5. Pag-usapan lang ang Minecraft stuff (blocks, tools, mobs, crafting, mining)
-6. Isulat ng one short paragraph (3-5 sentences) na nag-eexplain using direct comparisons
-7. Pagkatapos, magbigay ng up to 3 short examples using Minecraft comparisons
-8. Sa dulo, magdagdag ng CONCLUSION na nagsisimula sa "Basically, ang [concept] ay" - ito ay super short, jam-packed summary ng analogy at one example combined
+6. Isulat ng MAXIMUM 2 SENTENCES LANG na nag-eexplain using direct comparisons
+7. Pagkatapos, magbigay ng EXACTLY 1 short example lang using Minecraft comparison
+8. Sa dulo, magdagdag ng CONCLUSION na nagsisimula sa "Basically, ang [concept] ay" - ito ay super short, jam-packed summary ng analogy at example combined
 9. Walang markdown formatting - plain text lang
 10. Magsalita parang nag-text ka lang sa tropa mo
 
 Format: 
-- One paragraph with comparisons
-- Up to 3 examples
-- Conclusion: "Basically, ang [concept] ay [super concise summary ng analogy + example]"
+- Maximum 2 sentences with comparisons
+- Exactly 1 example only
+- Conclusion: "Basically, ang [concept] ay [super concise summary]"
 
-Keep it short, simple, at madaling intindihin. Gamitin ang casual Taglish.`;
+Keep it super short and simple. Gamitin ang casual Taglish.`;
 
         // Prepare request body with Google Search grounding and thinking
         const requestBody = {
