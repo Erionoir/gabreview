@@ -70,23 +70,24 @@ async function generateAnalogy() {
 
     try {
         // Create the prompt for Minecraft analogy
-        const prompt = `You are explaining concepts to someone who has played Minecraft but knows nothing about the topic. Use the simplest possible language.
+        const prompt = `Ikaw ay nag-eexplain ng concepts sa kaibigan mo na naglalaro ng Minecraft pero wala siyang alam sa topic. Gamitin ang pinakasimpleng salita.
 
 Study Material:
 ${studyText}
 
-Create a super simple Minecraft analogy. Follow these rules:
-1. Pretend you're talking to a friend who plays Minecraft - use everyday, simple words
-2. NO complicated or technical words - only use words a 12-year-old would know
-3. Talk ONLY about Minecraft things (blocks, tools, mobs, crafting, mining, etc.) - avoid the original fancy terms
-4. Write one short paragraph (3-5 sentences max) explaining it like you would to a beginner
-5. Then give up to 3 very short examples using only Minecraft stuff
-6. Use simple sentences - no long, complex explanations
-7. NO markdown formatting at all (no asterisks, hashtags, dashes, or special symbols)
-8. Write in plain text only like you're texting a friend
-9. Think: "How would I explain this to someone who only knows Minecraft?"
+Gumawa ng super simple na Minecraft analogy. Sundin ang mga rules na ito:
+1. Magsalita ng casual Tagalog - gamitin ang Taglish kung kailangan (mix ng Tagalog at English)
+2. Gumamit ng DIRECT COMPARISONS - sabihin "Ang [concept] ay parang [Minecraft thing]"
+3. Halimbawa: "Ang subclass is parang Iron Golem, tapos ang property niya is yung poppy na hawak niya"
+4. Use simple Tagalog words lang - wag gumamit ng mahirap na technical terms
+5. Pag-usapan lang ang Minecraft stuff (blocks, tools, mobs, crafting, mining)
+6. Isulat ng one short paragraph (3-5 sentences) na nag-eexplain using direct comparisons
+7. Pagkatapos, magbigay ng up to 3 short examples using Minecraft comparisons
+8. Walang markdown formatting - plain text lang
+9. Magsalita parang nag-text ka lang sa tropa mo
+10. Think: "Paano ko ito ie-explain sa taong naglalaro lang ng Minecraft?"
 
-Keep it short, simple, and easy. Use basic words only.`;
+Keep it short, simple, at madaling intindihin. Gamitin ang casual Taglish.`;
 
         // Prepare request body with Google Search grounding and thinking
         const requestBody = {
