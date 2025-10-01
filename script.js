@@ -83,9 +83,14 @@ Gumawa ng super simple na Minecraft analogy. Sundin ang mga rules na ito:
 5. Pag-usapan lang ang Minecraft stuff (blocks, tools, mobs, crafting, mining)
 6. Isulat ng one short paragraph (3-5 sentences) na nag-eexplain using direct comparisons
 7. Pagkatapos, magbigay ng up to 3 short examples using Minecraft comparisons
-8. Walang markdown formatting - plain text lang
-9. Magsalita parang nag-text ka lang sa tropa mo
-10. Think: "Paano ko ito ie-explain sa taong naglalaro lang ng Minecraft?"
+8. Sa dulo, magdagdag ng CONCLUSION na nagsisimula sa "Basically, ang [concept] ay" - ito ay super short, jam-packed summary ng analogy at one example combined
+9. Walang markdown formatting - plain text lang
+10. Magsalita parang nag-text ka lang sa tropa mo
+
+Format: 
+- One paragraph with comparisons
+- Up to 3 examples
+- Conclusion: "Basically, ang [concept] ay [super concise summary ng analogy + example]"
 
 Keep it short, simple, at madaling intindihin. Gamitin ang casual Taglish.`;
 
