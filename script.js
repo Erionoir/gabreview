@@ -12,7 +12,15 @@ const errorMessage = document.getElementById('errorMessage');
 const copyBtn = document.getElementById('copyBtn');
 
 // API Configuration
-const GEMINI_API_KEY = 'AIzaSyAdFrE13TQvqUtdF6lOoHh_HZOVzqYs8Lo'; // Replace with your actual Gemini API key
+const API_KEYS = [
+    'AIzaSyAdFrE13TQvqUtdF6lOoHh_HZOVzqYs8Lo',
+    'AIzaSyA0spm4jONBRij-Mbt4BoSUOU2d-1rTV0I',
+    'AIzaSyCC0hpetqoWZ4QyTHFysM60OlE8bUm7tr4',
+    'AIzaSyB-Hs4wDhXwOpppBEqXmpCZgoCucaskLDU',
+    'AIzaSyAwBhuwTglVYnGJC8wk4Zps5LxmwAJ4Cj4',
+    'AIzaSyAG6_VdTOIAitYdh0swHrJZHglvbKvbi44'
+];
+let currentKeyIndex = 0;
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
 // Generate analogy on button click
@@ -52,7 +60,7 @@ async function generateAnalogy() {
         return;
     }
 
-    if (!GEMINI_API_KEY || GEMINI_API_KEY === 'YOUR_API_KEY_HERE') {
+    if (!API_KEYS || API_KEYS.length === 0 || API_KEYS[0] === 'YOUR_API_KEY_HERE') {
         showError('API key not configured. Please add your Gemini API key to the script.js file.');
         return;
     }
@@ -67,6 +75,20 @@ async function generateAnalogy() {
 
     // Show loading state
     showLoading();
+
+    // Try to generate with current API key, with automatic rotation on quota exceeded
+    await generateWithKeyRotation(studyText, 0);
+}
+
+// Function to generate with automatic key rotation
+async function generateWithKeyRotation(studyText, attemptCount) {
+    // If we've tried all keys, show error
+    if (attemptCount >= API_KEYS.length) {
+        showError('All API keys have exceeded their quota. Please try again later.');
+        return;
+    }
+
+    const currentKey = API_KEYS[currentKeyIndex];
 
     try {
         // Create the prompt for Minecraft analogy
@@ -131,7 +153,7 @@ Keep it super short and simple. Gamitin ang casual Taglish.`;
         };
 
         // Make API request
-        const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+        const response = await fetch(`${GEMINI_API_URL}?key=${currentKey}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -139,12 +161,22 @@ Keep it super short and simple. Gamitin ang casual Taglish.`;
             body: JSON.stringify(requestBody)
         });
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error?.message || `API Error: ${response.status}`);
-        }
-
         const data = await response.json();
+
+        // Check for quota exceeded error
+        if (!response.ok) {
+            if (data.error?.message?.includes('quota') || 
+                data.error?.message?.includes('RESOURCE_EXHAUSTED') ||
+                response.status === 429) {
+                console.log(`API key ${currentKeyIndex + 1} quota exceeded, switching to next key...`);
+                // Move to next key
+                currentKeyIndex = (currentKeyIndex + 1) % API_KEYS.length;
+                // Retry with next key
+                await generateWithKeyRotation(studyText, attemptCount + 1);
+                return;
+            }
+            throw new Error(data.error?.message || `API Error: ${response.status}`);
+        }
 
         // Extract the generated analogy
         const candidate = data.candidates[0];
@@ -158,7 +190,14 @@ Keep it super short and simple. Gamitin ang casual Taglish.`;
 
     } catch (error) {
         console.error('Error:', error);
-        showError(error.message || 'An unexpected error occurred. Please check your API key and try again.');
+        // Don't show error if we're retrying with another key
+        if (attemptCount < API_KEYS.length - 1) {
+            console.log('Retrying with next API key...');
+            currentKeyIndex = (currentKeyIndex + 1) % API_KEYS.length;
+            await generateWithKeyRotation(studyText, attemptCount + 1);
+        } else {
+            showError(error.message || 'An unexpected error occurred. Please check your API keys and try again.');
+        }
     }
 }
 
