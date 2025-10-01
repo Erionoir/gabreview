@@ -70,23 +70,23 @@ async function generateAnalogy() {
 
     try {
         // Create the prompt for Minecraft analogy
-        const prompt = `You are an expert educator who creates simple Minecraft analogies to help students understand complex concepts.
+        const prompt = `You are explaining concepts to someone who has played Minecraft but knows nothing about the topic. Use the simplest possible language.
 
 Study Material:
 ${studyText}
 
-Create a simple Minecraft analogy that helps explain this concept. Your response must follow these rules:
-1. Make it extremely simple and easy to understand
-2. Use mostly Minecraft terminology and game mechanics - avoid using the original technical terms when possible
-3. Explain the concept entirely through Minecraft language (blocks, items, mobs, crafting, mining, building, redstone, etc.)
-4. Write exactly one short paragraph that explains the core analogy using simple Minecraft language
-5. After the paragraph, provide up to 3 very short, concrete examples using Minecraft terms
-6. Be straight to the point without personality or conversational tone
-7. DO NOT use any markdown formatting (no bold, italics, headers, bullet points, or code blocks)
-8. Write in plain text only
-9. Keep it simple - think like you're explaining to someone who knows Minecraft but not the original concept
+Create a super simple Minecraft analogy. Follow these rules:
+1. Pretend you're talking to a friend who plays Minecraft - use everyday, simple words
+2. NO complicated or technical words - only use words a 12-year-old would know
+3. Talk ONLY about Minecraft things (blocks, tools, mobs, crafting, mining, etc.) - avoid the original fancy terms
+4. Write one short paragraph (3-5 sentences max) explaining it like you would to a beginner
+5. Then give up to 3 very short examples using only Minecraft stuff
+6. Use simple sentences - no long, complex explanations
+7. NO markdown formatting at all (no asterisks, hashtags, dashes, or special symbols)
+8. Write in plain text only like you're texting a friend
+9. Think: "How would I explain this to someone who only knows Minecraft?"
 
-Format: One simple paragraph using Minecraft terms, then up to 3 short examples.`;
+Keep it short, simple, and easy. Use basic words only.`;
 
         // Prepare request body with Google Search grounding and thinking
         const requestBody = {
